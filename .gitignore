@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------
+# Raw and generated data (never commit; rebuilt by scripts)
+# Directory placeholders (.gitkeep) stay tracked.
+# ---------------------------------------------------------------
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/embeddings/*
+!data/embeddings/.gitkeep
+
+# Kaggle / dataset archives anywhere in the repo
+*.csv.zip
+*.zip
+transactions_train.csv
+articles.csv
+customers.csv
+sample_submission.csv
+
+# ---------------------------------------------------------------
+# Experiment outputs (large, regenerable)
+# ---------------------------------------------------------------
+mlruns/
+mlartifacts/
+artifacts/
+checkpoints/
+lightning_logs/
+*.ckpt
+*.pt
+*.pth
+
+# ---------------------------------------------------------------
+# Secrets and credentials
+# ---------------------------------------------------------------
+.env
+.env.*
+!.env.example
+kaggle.json
+*.pem
+*.key
+
+# ---------------------------------------------------------------
+# Python environment and caches
+# ---------------------------------------------------------------
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+build/
+dist/
+
+# ---------------------------------------------------------------
+# Editor / OS files
+# ---------------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

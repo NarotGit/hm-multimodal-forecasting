@@ -1,0 +1,9 @@
+# Normalise line endings so Windows and Linux/Colab produce identical diffs.
+* text=auto eol=lf
+
+# Binary types (never touched by line-ending conversion)
+*.parquet binary
+*.npy binary
+*.npz binary
+*.png binary
+*.pdf binary
