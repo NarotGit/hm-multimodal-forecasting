@@ -2,7 +2,7 @@
 
 Dissertation project: **Multimodal Probabilistic Forecasting of Retail Purchase Activity Using Product Metadata and Text Embeddings.**
 
-> **Status: Stage 1 (project initialization) in progress.** This repository currently contains only the project skeleton and documentation. No data pipeline, models, or results exist yet.
+> **Status: Stage 1 (project initialization) in progress.** This repository currently contains only the project skeleton, environment definition and documentation. No data pipeline, models, or results exist yet.
 
 ## Research objective
 
@@ -61,6 +61,20 @@ Work is incremental: one small, verifiable step at a time. Each step has stated 
 
 Only the items marked done below exist in this repository.
 
+## Setup (Windows PowerShell)
+
+Requires Python 3.12 (see `docs/DECISIONS.md`, D-002).
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m pytest
+```
+
+Only the core data stack (NumPy, Polars, PyArrow, PyYAML) is installed so far. Further dependencies are added when the stage that needs them begins.
+
 ## Current repository layout
 
 ```
@@ -72,14 +86,16 @@ data/sample/      tiny committed samples for tests/demos (empty for now)
 docs/             project documentation (added as needed)
 notebooks/        exploratory analysis (empty for now)
 reports/          figures and tables for the dissertation (empty for now)
-src/              source code (empty for now)
-tests/            automated tests (empty for now)
+src/hm_forecast/  Python package (empty apart from version for now)
+tests/            automated tests (environment smoke tests only)
+pyproject.toml    project metadata and bounded dependencies
 ```
 
 ## Progress
 
 - [x] Stage 1, Step 1: repository skeleton, `.gitignore`, `.gitattributes`, README
-- [ ] Stage 1, Step 2 onward: not started
+- [x] Stage 1, Step 2: Python 3.12 environment, `pyproject.toml`, smoke tests, `docs/DECISIONS.md`
+- [ ] Stage 1, Step 3 onward: not started
 
 ## Integrity rules
 
