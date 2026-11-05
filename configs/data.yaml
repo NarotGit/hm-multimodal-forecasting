@@ -1,0 +1,76 @@
+# Expected source files for the H&M dataset.
+#
+# Everything here is EXPECTED (taken from the Kaggle data description), not yet
+# verified against the actual files. The inventory step compares the real files
+# with this specification and reports differences; it does not silently fix them.
+#
+# Currently enforced by src/hm_forecast/data/inventory.py:
+#   file exists, is non-empty, header is readable, required columns present,
+#   unexpected columns reported, rough file size plausible.
+# NOT yet enforced (later steps): dtypes, row counts, value ranges, keys.
+# The dtype strings below document intent and will be used by the profiling step.
+
+schema_version: 1
+
+dataset:
+  name: "H&M Personalized Fashion Recommendations"
+  source: "https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations"
+  terms: "Kaggle competition rules apply. Raw files are never committed to Git."
+
+# A file whose size is outside [expected / ratio, expected * ratio] gets a WARNING.
+# This only catches gross problems (for example a truncated or wrong file).
+size_tolerance_ratio: 2.0
+
+files:
+  transactions_train.csv:
+    required: true
+    approx_size_mb: 3500
+    columns:
+      t_dat: "date string (YYYY-MM-DD)"
+      customer_id: "string (hashed)"
+      article_id: "integer"
+      price: "float"
+      sales_channel_id: "integer (1 or 2)"
+
+  articles.csv:
+    required: true
+    approx_size_mb: 36
+    columns:
+      article_id: "integer"
+      product_code: "integer"
+      prod_name: "string"
+      product_type_no: "integer"
+      product_type_name: "string"
+      product_group_name: "string"
+      graphical_appearance_no: "integer"
+      graphical_appearance_name: "string"
+      colour_group_code: "integer"
+      colour_group_name: "string"
+      perceived_colour_value_id: "integer"
+      perceived_colour_value_name: "string"
+      perceived_colour_master_id: "integer"
+      perceived_colour_master_name: "string"
+      department_no: "integer"
+      department_name: "string"
+      index_code: "string"
+      index_name: "string"
+      index_group_no: "integer"
+      index_group_name: "string"
+      section_no: "integer"
+      section_name: "string"
+      garment_group_no: "integer"
+      garment_group_name: "string"
+      detail_desc: "string (free text, may be missing)"
+
+  # Optional: only used if exploratory analysis later justifies customer features.
+  customers.csv:
+    required: false
+    approx_size_mb: 207
+    columns:
+      customer_id: "string (hashed)"
+      FN: "float (flag, many missing)"
+      Active: "float (flag, many missing)"
+      club_member_status: "string"
+      fashion_news_frequency: "string"
+      age: "float (some missing)"
+      postal_code: "string (hashed)"

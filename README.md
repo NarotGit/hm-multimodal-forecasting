@@ -73,12 +73,20 @@ python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-Only the core data stack (NumPy, Polars, PyArrow, PyYAML) is installed so far. Further dependencies are added when the stage that needs them begins.
+Only the core data stack (NumPy, Polars, PyArrow, PyYAML) is installed so far. Further dependencies are added when the stage that needs them begins. Always use `python -m pip ...` rather than bare `pip`.
+
+Tell the project where the raw H&M CSVs are stored:
+
+```powershell
+Copy-Item configs\local.example.yaml configs\local.yaml
+# edit configs\local.yaml and set raw_data_dir
+python -m hm_forecast.data.inventory
+```
 
 ## Current repository layout
 
 ```
-configs/          explicit configuration (empty for now)
+configs/          data.yaml (expected files/columns), local.example.yaml; local.yaml is git-ignored
 data/raw/         downloaded H&M CSVs (git-ignored)
 data/processed/   generated Parquet tables (git-ignored)
 data/embeddings/  cached article embeddings (git-ignored)
@@ -95,7 +103,9 @@ pyproject.toml    project metadata and bounded dependencies
 
 - [x] Stage 1, Step 1: repository skeleton, `.gitignore`, `.gitattributes`, README
 - [x] Stage 1, Step 2: Python 3.12 environment, `pyproject.toml`, smoke tests, `docs/DECISIONS.md`
-- [ ] Stage 1, Step 3 onward: not started
+- [x] Stage 1 complete (Stage 1 closed after Step 2 was verified)
+- [ ] Stage 2, Step 1: raw-file inventory (`python -m hm_forecast.data.inventory`)
+- [ ] Stage 2, Step 2 onward: not started
 
 ## Integrity rules
 

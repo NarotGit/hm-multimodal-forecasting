@@ -1,0 +1,5 @@
+# Copy this file to configs/local.yaml (which is git-ignored) and edit it.
+# local.yaml holds machine-specific settings and must never be committed.
+#
+# Use forward slashes (works on Windows) or single quotes around a backslash path.
+raw_data_dir: "C:/path/to/folder/containing/the/h&m/csv/files"
