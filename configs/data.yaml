@@ -74,3 +74,22 @@ files:
       fashion_news_frequency: "string"
       age: "float (some missing)"
       postal_code: "string (hashed)"
+
+# Settings for src/hm_forecast/data/profile_articles.py
+profiling:
+  articles:
+    key_column: article_id          # must be unique, non-missing, integer-like
+    group_column: product_code      # several article_ids (variants) may share one product_code
+    text_columns: [prod_name, detail_desc]
+    # [code column, name column]: each code should map to exactly one name and vice versa.
+    code_name_pairs:
+      - [product_type_no, product_type_name]
+      - [graphical_appearance_no, graphical_appearance_name]
+      - [colour_group_code, colour_group_name]
+      - [perceived_colour_value_id, perceived_colour_value_name]
+      - [perceived_colour_master_id, perceived_colour_master_name]
+      - [department_no, department_name]
+      - [index_code, index_name]
+      - [index_group_no, index_group_name]
+      - [section_no, section_name]
+      - [garment_group_no, garment_group_name]

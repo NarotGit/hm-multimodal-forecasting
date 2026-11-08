@@ -27,3 +27,8 @@ Status values: **provisional** (may change with evidence) or **final**.
 - Expected file and column specification is version-controlled in `configs/data.yaml`. It records what we expect from the Kaggle description; it is not evidence about the real files until the inventory is run.
 - Validation policy (Stage 2): ERROR blocks later stages (required file missing/empty/unreadable, required column missing, duplicate headers); WARNING is reported but does not block (optional file missing, extra columns, implausible file size).
 - Consequence: the repo is portable across machines and never contains absolute paths or raw data.
+
+## D-005: Profile tables as text first (final)
+- `articles.csv` is profiled with every column read as text (no schema inference), so nothing is coerced before we have measured how many values would fail integer conversion or lose information (for example leading zeros).
+- Severity policy for the articles profile: key missing/non-integer/duplicate = ERROR (blocks later stages); leading-zero key, non-integer values in other integer columns, non-one-to-one code/name pairs and fully duplicated rows = WARNING; missing-value rates, whitespace and text-length statistics = INFO (they describe the data and are handled by later explicit rules).
+- Consequence: dtype choices for the canonical dataset (Stage 4) will be based on measured evidence, not assumed.
