@@ -93,3 +93,10 @@ profiling:
       - [index_group_no, index_group_name]
       - [section_no, section_name]
       - [garment_group_no, garment_group_name]
+
+# Settings for src/hm_forecast/data/profile_transactions.py
+  transactions:
+    expected_channel_values: ["1", "2"]
+    # Width of the zero-padded article_id in articles.csv (measured in the articles profile).
+    article_id_width: 10
+    max_missing_dates_listed: 20

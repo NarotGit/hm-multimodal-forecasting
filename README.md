@@ -105,8 +105,9 @@ pyproject.toml    project metadata and bounded dependencies
 - [x] Stage 1, Step 2: Python 3.12 environment, `pyproject.toml`, smoke tests, `docs/DECISIONS.md`
 - [x] Stage 1 complete (Stage 1 closed after Step 2 was verified)
 - [x] Stage 2, Step 1: raw-file inventory (`python -m hm_forecast.data.inventory`)
-- [ ] Stage 2, Step 2: articles profile (`python -m hm_forecast.data.profile_articles`)
-- [ ] Stage 2, Step 3 onward: not started
+- [x] Stage 2, Step 2: articles profile (`python -m hm_forecast.data.profile_articles`)
+- [x] Stage 2, Step 3: transactions profile (`python -m hm_forecast.data.profile_transactions`)
+- [ ] Stage 2, Step 4 onward: not started
 
 ## Integrity rules
 
