@@ -83,6 +83,14 @@ Copy-Item configs\local.example.yaml configs\local.yaml
 python -m hm_forecast.data.inventory
 ```
 
+Run all raw-data checks at once (inventory, articles profile, transactions profile; about 30 s on the full data):
+
+```powershell
+python -m hm_forecast.data.validate
+```
+
+Exit code 0 = passed, 1 = blocking data errors, 2 = a stage could not run. The combined summary is written to `artifacts/validation/validation_summary.json`.
+
 ## Current repository layout
 
 ```
@@ -107,7 +115,8 @@ pyproject.toml    project metadata and bounded dependencies
 - [x] Stage 2, Step 1: raw-file inventory (`python -m hm_forecast.data.inventory`)
 - [x] Stage 2, Step 2: articles profile (`python -m hm_forecast.data.profile_articles`)
 - [x] Stage 2, Step 3: transactions profile (`python -m hm_forecast.data.profile_transactions`)
-- [ ] Stage 2, Step 4 onward: not started
+- [ ] Stage 2, Step 4: single validation gate (`python -m hm_forecast.data.validate`)
+- [ ] Stage 3 onward: not started
 
 ## Integrity rules
 

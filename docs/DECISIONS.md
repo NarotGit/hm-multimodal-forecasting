@@ -39,3 +39,11 @@ Status values: **provisional** (may change with evidence) or **final**.
 - Rule: keep `article_id` as text (Utf8) in every table and join by exact equality. Never cast to an integer, which would drop the leading zero.
 - The zero-padding check in the transactions profile and `article_id_width` in `configs/data.yaml` remain as a safeguard but are not needed for the current files.
 - Alternatives considered: converting to integer on both sides (rejected: needless information loss and a risk of mismatches); zero-padding transactions (not needed: already padded).
+
+## D-007: Validation gate policy (final)
+- One command, `python -m hm_forecast.data.validate`, runs the inventory, articles profile and transactions profile and writes `artifacts/validation/validation_summary.json`.
+- If the inventory has blocking errors the remaining stages are skipped; otherwise every stage runs so all problems are visible at once.
+- Exit codes: 0 passed, 1 blocking data errors, 2 a stage could not run. Only reports written by the current run are read.
+- Trial runs (`--n-rows`) are not available in the gate: a gate validates the whole file. `--skip-transactions` exists for quick checks and is recorded in the summary as `full_validation: false`.
+- The summary records file sizes and modification times, optional SHA-256 hashes (`--sha256`, slow for the 3.5 GB file) and the Git commit, so a validation result can be tied to exact data and code.
+- Consequence: later stages (starting with Stage 4) call this gate before any expensive processing.
