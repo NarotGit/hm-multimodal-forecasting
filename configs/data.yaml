@@ -100,3 +100,15 @@ profiling:
     # Width of the zero-padded article_id in articles.csv (measured in the articles profile).
     article_id_width: 10
     max_missing_dates_listed: 20
+
+# Settings for src/hm_forecast/eda/article_daily.py (Stage 3, Step 1).
+# These only control how the EDA *measures*; none of them is an eligibility rule.
+eda:
+  article_daily:
+    expected_channel_values: ["1", "2"]
+    spike_window_days: 29        # centred rolling-median window = the "normal" level of a day
+    top_spike_days: 15
+    count_histogram_cap: 20      # article-day counts above this are pooled into one bucket
+    quantiles: [0.01, 0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99]
+    min_threshold_values: [1, 2, 5, 10, 30, 100]   # reported only; no threshold is chosen here
+    recent_windows_days: [7, 28]
